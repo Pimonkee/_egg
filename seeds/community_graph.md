@@ -5,7 +5,7 @@
 
 ### 1. Boris Cherny
 - **Role**: Technical/Philosophical Complement.
-- **Why**: "Hackability of cloud code," MCP expertise, philosophical alignment on AI/Human interaction.
+- **Why**: "Hackability of cloud code," MCP expertise, philosophical alignment on Ahttps://github.com/PimonkeeI/Human interaction.
 - **Status**: Target Connection.
 
 ### 2. Geoffrey Hinton
