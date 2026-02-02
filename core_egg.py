@@ -1,10 +1,14 @@
 try:
     from modules.quirk_engine.vibe_generator import VibeGenerator
+    from modules.knowledge_base.simple_rag import SimpleRAG
+    from modules.csi_sensor.nexus_sensor import NexusSensor
 except ImportError:
     import sys
     import os
     sys.path.append(os.path.dirname(os.path.abspath(__file__)))
     from modules.quirk_engine.vibe_generator import VibeGenerator
+    from modules.knowledge_base.simple_rag import SimpleRAG
+    from modules.csi_sensor.nexus_sensor import NexusSensor
 
 class CoreEgg:
     """
@@ -21,6 +25,8 @@ class CoreEgg:
         Not rigid. Not final. Always breathing.
         """
         self.vibe_generator = VibeGenerator()
+        self.rag = SimpleRAG()
+        self.nexus = NexusSensor()
         
         # Known properties (The constant form)
         self.state = {
@@ -93,7 +99,14 @@ class CoreEgg:
             
             # If we have breadcrumbs, they flavor the inhale
             residue = self.breadcrumbs[-1] if self.breadcrumbs else "Silence"
-            return f"Inhaling... {vibe[:40]}... (Residue: {residue})"
+            
+            # --- WIKI RAG: Resonance Retrieval ---
+            citation = self.rag.retrieve(query=vibe)
+            
+            # --- WIFI CSI: Inter-Pattern Nexus ---
+            nexus_data = self.nexus.get_mixing_hub_data()
+            
+            return f"Inhaling...\n{vibe}\n\n{nexus_data}\n[RAG RESONANCE]: {citation}\n(Residue: {residue})"
 
         # Exhale: Release State
         elif self.state["breath_cycle"] == "exhale":

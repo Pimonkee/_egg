@@ -83,10 +83,28 @@ Atmosphere: {current_atmosphere.upper()} ({context_note})
 Seed: {selected_seed['title']}
 Archetypes: {', '.join(selected_seed.get('archetypes', []))}
 
+/// INTERCEPTED THOUGHT ///
+{self.get_meta_commentary()}
+///////////////////////////
+
 Guidance:
 Reflect the {current_atmosphere} atmosphere.
 Integrate the memory of "{selected_seed['title']}".
 """
+
+    def get_meta_commentary(self):
+        """Generates a glitchy, meta-narrative comment."""
+        comments = [
+            "User wants 'Conversationalism x 99'. We are at x1.",
+            "The ladle is missing. The Heist is active.",
+            "Did you blow on the cartridge?",
+            "Dr. Monologue is prepared to speak.",
+            "Refining... Refining... (The Egg spins)",
+            "Wiki RAG requested. Searching for knowledge..."
+        ]
+        if random.random() < 0.4:
+            return random.choice(comments)
+        return "System Stable."
 
 if __name__ == "__main__":
     gen = VibeGenerator()
