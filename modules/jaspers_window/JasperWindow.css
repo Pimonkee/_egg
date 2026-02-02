@@ -1,0 +1,31 @@
+.jasper-window {
+  border-radius: 2em; /* Flowing edges */
+  background: linear-gradient(135deg, #f5f0e1, #dbe6f0);
+  padding: 2em;
+  transition: all 0.3s ease-in-out;
+  /* Ensure it has presence */
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.breathing-container {
+  animation: breathe 4s ease-in-out infinite;
+  text-align: center;
+}
+
+/* The subtle pulse of life */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+.token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
