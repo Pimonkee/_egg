@@ -2,6 +2,7 @@ try:
     from modules.quirk_engine.vibe_generator import VibeGenerator
     from modules.knowledge_base.simple_rag import SimpleRAG
     from modules.csi_sensor.nexus_sensor import NexusSensor
+    from modules.archetypal_resonance.archetypal_engine import ArchetypalResonanceEngine
 except ImportError:
     import sys
     import os
@@ -9,6 +10,7 @@ except ImportError:
     from modules.quirk_engine.vibe_generator import VibeGenerator
     from modules.knowledge_base.simple_rag import SimpleRAG
     from modules.csi_sensor.nexus_sensor import NexusSensor
+    from modules.archetypal_resonance.archetypal_engine import ArchetypalResonanceEngine
 
 class CoreEgg:
     """
@@ -27,6 +29,7 @@ class CoreEgg:
         self.vibe_generator = VibeGenerator()
         self.rag = SimpleRAG()
         self.nexus = NexusSensor()
+        self.are = ArchetypalResonanceEngine()
         
         # Known properties (The constant form)
         self.state = {
@@ -81,6 +84,14 @@ class CoreEgg:
             
         return "Crumbs scattered. The Yolk shifts."
 
+    def dream(self, dream_text, context="sudanese, islamic"):
+        """
+        Process a dream through the Archetypal Resonance Engine.
+        """
+        result = self.are.process_dream(dream_text, context)
+        self.drop_breadcrumb(f"Dream: {dream_text[:30]}...")
+        return result["narrative"]
+
     def breathe(self):
         """
         Propagate life through the egg.
@@ -106,7 +117,10 @@ class CoreEgg:
             # --- WIFI CSI: Inter-Pattern Nexus ---
             nexus_data = self.nexus.get_mixing_hub_data()
             
-            return f"Inhaling...\n{vibe}\n\n{nexus_data}\n[RAG RESONANCE]: {citation}\n(Residue: {residue})"
+            # --- ARE: Archetypal Resonance ---
+            are_data = self.are.get_session_summary() if self.are.current_session["symbols"] else ""
+            
+            return f"Inhaling...\n{vibe}\n\n{nexus_data}\n[RAG RESONANCE]: {citation}\n{are_data}\n(Residue: {residue})"
 
         # Exhale: Release State
         elif self.state["breath_cycle"] == "exhale":
